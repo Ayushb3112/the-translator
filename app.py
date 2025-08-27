@@ -107,8 +107,11 @@ def slack_events():
     text = event.get("text", "")
     ts = event.get("ts", "")
 
-    if channel != SOURCE_CHANNEL_ID:
+    SOURCE_CHANNEL_IDS = os.getenv("SOURCE_CHANNEL_IDS", "").split(",")
+
+    if channel not in SOURCE_CHANNEL_IDS:
         return Response(status=200)
+
     if subtype is not None:
         return Response(status=200)
     if BOT_USER_ID and user == BOT_USER_ID:

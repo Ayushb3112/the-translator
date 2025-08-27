@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from slack_sdk.signature import SignatureVerifier
@@ -11,6 +11,36 @@ from utils import get_channel_name, get_permalink, escape_md
 load_dotenv()
 
 app = Flask(__name__)
+
+# --- Health / Home routes for Render / testing ---
+@app.route("/")
+def home():
+    return "The Translator API is live! Slack events are being processed."
+
+@app.route("/translate", methods=["POST"])
+def translate():
+    """
+    Test endpoint: accepts JSON like {"text": "hei", "target_lang": "en"}
+    and returns translated text using your existing detect_and_translate().
+    """
+    data = request.get_json()
+    text = data.get("text", "")
+    
+    result = detect_and_translate(text)
+    if result:
+        src_lang, translated = result
+        return {
+            "input": text,
+            "translated": translated,
+            "detected_language": src_lang
+        }
+    else:
+        return {
+            "input": text,
+            "translated": None,
+            "detected_language": None
+        }
+
 
 SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")
 SLACK_SIGNING_SECRET = os.environ.get("SLACK_SIGNING_SECRET", "")

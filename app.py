@@ -78,7 +78,7 @@ NORWEGIAN_TAGS = {"no", "nb", "nn"}  # Norwegian, Bokmål, Nynorsk
 
 # Expand your accepted tags
 NORWEGIAN_TAGS = {"no", "nb", "nn"}
-SCANDINAVIAN_TAGS = NORWEGIAN_TAGS | {"da", "sv"}   # include Danish & Swedish
+SCANDINAVIAN_TAGS = {"no", "nb", "nn", "da", "sv"}   # include Danish & Swedish
 
 def detect_and_translate(text: str) -> tuple[str, str] | None:
     """
@@ -97,6 +97,7 @@ def detect_and_translate(text: str) -> tuple[str, str] | None:
     elif TRANSLATION_BACKEND == "deepl":
         # DeepL auto-detect; returns codes like 'NO', 'NB', 'NN', 'DA', 'SV'
         res = translator.translate_text(text, target_lang="EN")
+        print("DEBUG:", res.text, res.src)
         src = (res.detected_source_lang or "").lower()
         if src not in SCANDINAVIAN_TAGS:
             return None

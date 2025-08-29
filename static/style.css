@@ -1,0 +1,27 @@
+/* Center the hero section content */
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+/* Add some spacing between sections */
+section {
+    padding: 2rem 0;
+}
+
+/* Style for the result container */
+#result-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--muted-border-color);
+    min-height: 50px;
+}
+
+#result-container blockquote {
+    margin-bottom: 0.5rem;
+}
+
+#result-container small {
+    color: var(--muted-color);
+}

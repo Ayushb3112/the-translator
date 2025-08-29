@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scandinavian Slack Translator</title>
+    
+    <!-- Pico.css for modern styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    
+    <!-- Your custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="container-fluid">
+        <ul>
+            <li><strong><a href="#">Scandinavian Slack Translator</a></strong></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <header class="hero">
+            <hgroup>
+                <h1>Translate Scandinavian Languages in Slack</h1>
+                <h2>A simple bot that brings real-time English translations of Norwegian, Swedish, and Danish messages right into your workspace.</h2>
+            </hgroup>
+            <a href="#" role="button" class="contrast" onclick="alert('Add to Slack button is a placeholder!')">Add to Slack (Coming Soon)</a>
+        </header>
+
+        <!-- Features Section -->
+        <section id="features">
+            <h2>How It Works</h2>
+            <div class="grid">
+                <article>
+                    <h3>1. Invite the Bot</h3>
+                    <p>Add the translator bot to any public channel where you expect Scandinavian languages to be used.</p>
+                </article>
+                <article>
+                    <h3>2. Send a Message</h3>
+                    <p>A team member writes a message in Norwegian, Swedish, or Danish in the monitored channel.</p>
+                </article>
+                <article>
+                    <h3>3. Get the Translation</h3>
+                    <p>The bot instantly posts a clean, formatted translation in a separate channel for clarity.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Interactive Demo Section -->
+        <section id="demo">
+            <h2>Live Translation Demo</h2>
+            <p>Test the translation engine right here. Enter some text in Norwegian, Swedish, or Danish.</p>
+            <form id="translate-form">
+                <textarea id="inputText" name="text" placeholder="Skriv noe på norsk, svensk, eller dansk..." required></textarea>
+                <button type="submit" id="translateBtn">Translate to English</button>
+            </form>
+            <div id="result-container" aria-busy="false">
+                <!-- Translation result will be injected here -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container">
+        <small>&copy; 2025 Your Name. All rights reserved.</small>
+    </footer>
+
+    <!-- Your custom JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
